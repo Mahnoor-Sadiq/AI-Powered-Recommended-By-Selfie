@@ -1,0 +1,351 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Tailor | Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/slicknav.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/flaticon.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/progressbar_barfiller.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/gijgo.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/animate.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/animated-headline.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/magnific-popup.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fontawesome-all.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/themify-icons.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/slick.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/nice-select.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Preloader Start -->
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="preloader-circle"></div>
+                <div class="preloader-img pere-text">
+                    <img src="{{ url_for('static', filename='img/logo/loder.png') }}" alt="">
+                </div>
+            </div>
+        </div>
+    </div> 
+
+    <!-- Header Start -->
+    <header>
+        <div class="header-area header_area">
+            <div class="main-header">
+                <div class="header-bottom header-sticky">
+                  <div class="logo" style="height: 60px;">
+                    <a href="#">
+                      <img src="{{ url_for('static', filename='img/logo/capture1.png') }}" 
+                           alt="Logo" 
+                           style="height: 100%; width: auto;">
+                    </a>
+                  </div>
+                  
+                    <div class="header-left d-flex f-right align-items-center">
+                        <div class="main-menu f-right d-none d-lg-block">
+                            <nav> 
+                                <ul id="navigation">                                                                                                                                     
+                                    <li><a href="#">Home</a></li>
+                                    <li><a href="{{ url_for('about') }}">About</a></li>
+
+                                
+                                </ul>
+                                
+                            </nav>
+                        </div>
+                   <div class="header-right-btn f-right d-none d-lg-block ml-30">
+    <a href="{{ url_for('selfie_page') }}" class="header-btn">Try Now</a>
+</div>
+
+                    </div>          
+                    <div class="col-12">
+                        <div class="mobile_menu d-block d-lg-none"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+      
+        <!-- Slider Area Start -->
+        <div class="slider-area position-relative">
+          <div class="slider-active">
+            <div class="single-slider position-relative hero-overly slider-height d-flex align-items-center" 
+                 style="height: 600px; background-image: url('{{ url_for('static', filename='img/hero/h1_hero.png') }}');">
+        
+              <div class="container" style="height: 100%;">
+                <div class="row" style="height: 100%;">
+                  
+                  <!-- Left Side: Text -->
+                  <div class="col-lg-6 col-md-6 d-flex flex-column justify-content-center" style="height: 100%;">
+                    <div class="hero-caption" >
+                      <img class="rotateme" src="{{ url_for('static', filename='img/hero/hero-icon.png') }}" alt="">
+                      <h1 >AI-Powered Fashion That Fits You Perfectly</h1>
+                      <p>Discover smart outfit recommendations based on your selfie...</p>
+                      <a href="#" class="btn">Our Services</a>
+                    </div>
+                  </div>
+        
+                  <!-- Right Side: Image -->
+                  <div class="col-lg-6 col-md-6 d-flex justify-content-center align-items-center" style="height: 100%;">
+                    <img src="{{ url_for('static', filename='img/hero/newjpg.jpg') }}" 
+                         alt="" 
+                         style="height: 100%; width: 180%; object-fit: cover; margin-left: 180px;">
+                  </div>
+        
+                </div>
+              </div>
+        
+            </div>
+          </div>
+        </div>
+        
+        
+        <!-- Slider Area End -->
+
+
+<!-- Clients Offers Start -->
+<div class="clients-area section-padding40">
+  <div class="container">
+      <div class="row">
+          <!-- Offer 1 -->
+          <div class="col-lg-4 col-md-6 col-sm-6">
+              <div class="single-offers mb-50 wow fadeInUp" data-wow-delay=".2s">
+                  <div class="offers-img">
+                      <img src="{{ url_for('static', filename='img/gallery/cloth1.jpg') }}" alt="Body Type Detection">
+                  </div>
+                  <div class="offers-cap">
+                      <span>1</span>
+                      <h3><a href="services.html">Body Type Detection</a></h3>
+                      <p>Upload a selfie, and our AI model detects your body shape to help tailor outfit recommendations for the perfect fit.</p>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Offer 2 -->
+          <div class="col-lg-4 col-md-6 col-sm-6">
+              <div class="single-offers mb-50 wow fadeInUp" data-wow-delay=".4s">
+                  <div class="offers-img">
+                      <img src="{{ url_for('static', filename='img/gallery/ai1.avif') }}" alt="AI Styling">
+                  </div>
+                  <div class="offers-cap">
+                      <span>2</span>
+                      <h3><a href="services.html">AI Styling</a></h3>
+                      <p>Using machine learning and a style database, we suggest outfits that complement your figure, preferences, and current trends.</p>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Offer 3 -->
+          <div class="col-lg-4 col-md-6 col-sm-6">
+              <div class="single-offers mb-50 wow fadeInUp" data-wow-delay=".6s">
+                  <div class="offers-img">
+                      <img src="{{ url_for('static', filename='img/gallery/fashion.avif') }}" alt="Virtual Outfit Try-On">
+                  </div>
+                  <div class="offers-cap">
+                      <span>3</span>
+                      <h3><a href="services.html">Virtual Outfit Try-On</a></h3>
+                      <p>Preview recommended outfits virtually. See how clothes might look on you—all from a single selfie.</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- Clients Offers End -->
+
+        <!-- Clients Offers End -->
+        <section class="categories-area section-padding40">
+          <div class="container">
+              <!-- section Tittle -->
+              <div class="row justify-content-center">
+                  <div class="col-xl-6 col-lg-6 col-md-7 col-sm-9">
+                      <div class="section-tittle text-center mb-60">
+                          <h2>Why use our service?</h2>
+                          <p>Get outfit recommendations that are made for you. Our AI-powered platform transforms a simple selfie into a personalized style guide, helping you look your best every day.</p>
+                      </div>
+                  </div>
+              </div>
+              <div class="row">
+                  <!-- Smart Body Analysis -->
+                  <div class="col-lg-3 col-md-6 col-sm-6">
+                      <div class="single-cat mb-50 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".2s">
+                          <div class="cat-icon">
+                              <img src="{{ url_for('static', filename='img/icon/services1.svg') }}" alt="Smart Body Analysis">
+                          </div>
+                          <div class="cat-cap">
+                              <h5>Smart Body Analysis</h5>
+                              <p>We detect your body shape, pose, and proportions instantly for the most accurate styling advice.</p>
+                          </div>
+                      </div>
+                  </div>
+                  <!-- AI-Powered Styling -->
+                  <div class="col-lg-3 col-md-6 col-sm-6">
+                      <div class="single-cat mb-50 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".3s">
+                          <div class="cat-icon">
+                              <img src="{{ url_for('static', filename='img/icon/services2.svg') }}" alt="AI-Powered Styling">
+                          </div>
+                          <div class="cat-cap">
+                              <h5>AI-Powered Styling</h5>
+                              <p>Our machine learning models suggest outfits that match your unique features and personal preferences.</p>
+                          </div>
+                      </div>
+                  </div>
+                  <!-- Trend Recommendation -->
+                  <div class="col-lg-3 col-md-6 col-sm-6">
+                      <div class="single-cat mb-50 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".4s">
+                          <div class="cat-icon">
+                              <img src="{{ url_for('static', filename='img/icon/services3.svg') }}" alt="Trend Recommendation">
+                          </div>
+                          <div class="cat-cap">
+                              <h5>Trend Recommendation</h5>
+                              <p>Stay up-to-date with the latest fashion trends while keeping your look tailored to you.</p>
+                          </div>
+                      </div>
+                  </div>
+                  <!-- Virtual Try-On -->
+                  <div class="col-lg-3 col-md-6 col-sm-6">
+                      <div class="single-cat mb-50 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
+                          <div class="cat-icon">
+                              <img src="{{ url_for('static', filename='img/icon/services4.svg') }}" alt="Virtual Try-On">
+                          </div>
+                          <div class="cat-cap">
+                              <h5>Virtual Try-On</h5>
+                              <p>Preview suggested outfits digitally to see how they would look before you decide.</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+      
+        <!-- About Section -->
+        <section class="visit-tailor-area fix">
+            <div class="tailor-offers"></div>
+            <div class="tailor-details">
+                <h2>About our<br>AI Styling Platform</h2>
+                <p class="pera-top">Step into the future of fashion...</p>
+                <a href="#" class="btn">More About Us</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Start -->
+    <footer>
+      <div class="footer-wrapper section-bg2 pl-100" style="background-image: url('{{ url_for('static', filename='img/gallery/footer-bg.png') }}');">
+          <!-- Footer Start-->
+          <div class="footer-area footer-padding">
+              <div class="container">
+                  <div class="row justify-content-center">
+                      <!-- Logo & Info -->
+                      <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 text-center">
+                          <div class="single-footer-caption mb-50">
+                              <!-- logo -->
+                              <div class="footer-logo mb-35">
+                                  <a href="#"><img src="{{ url_for('static', filename='img/logo/logo') }}" alt=""></a>
+                              </div>
+                              <div class="footer-tittle">
+                                  <div class="footer-pera">
+                                      <p>Preview suggested outfits digitally to see how they would look before you decide.</p>
+                                  </div>
+                                  <ul class="mb-40 list-unstyled">
+                                      <li class="number"><a href="#">(80) 783 367-3904</a></li>
+                                      <li class="number2"><a href="#">(80) 783 367-3904</a></li>
+                                  </ul>
+                                  <!-- social -->
+                                  <div class="footer-social">
+                                      <a href="#"><i class="fab fa-twitter"></i></a>
+                                      <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                      <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+  
+                      <!-- Links -->
+                      <!-- <div class="col-xl-2 col-lg-4 col-md-4 col-sm-6 text-center">
+                          <div class="single-footer-caption mb-50">
+                              <div class="footer-tittle">
+                                  <h4>Our solutions</h4>
+                                  <ul class="list-unstyled">
+                                      <li><a href="#">Home</a></li>
+                                      <li><a href="#">About</a></li>
+                                      <li><a href="#">Services</a></li>
+                                      <li><a href="#">Blog</a></li>
+                                      <li><a href="#">Contact</a></li>
+                                  </ul>
+                              </div>
+                          </div>
+                      </div> -->
+                  </div>
+              </div>
+          </div>
+  
+          <!-- footer-bottom area -->
+          <div class="footer-bottom-area">
+              <div class="container">
+                  <div class="footer-border">
+                      <div class="row align-items-center">
+                          <div class="col-xl-12">
+                              <div class="footer-copy-right text-center">
+                                  <p>
+                                      Copyright &copy;
+                                      <script>document.write(new Date().getFullYear());</script>
+                                      All rights reserved | This template is made with 
+                                      <i class="fa fa-heart" aria-hidden="true"></i> by 
+                                      <a href="https://colorlib.com/" target="_blank">Colorlib</a>
+                                  </p>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <!-- Footer End-->
+      </div>
+  </footer>
+  
+  
+  
+    
+  
+
+    <!-- JS here -->
+    <script src="{{ url_for('static', filename='js/vendor/modernizr-3.5.0.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/vendor/jquery-1.12.4.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.slicknav.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/owl.carousel.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/slick.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/wow.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/animated.headline.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.magnific-popup.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/gijgo.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.nice-select.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.sticky.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.barfiller.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.counterup.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/waypoints.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.countdown.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/hover-direction-snake.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/contact.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.form.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.validate.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/mail-script.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.ajaxchimp.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/plugins.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

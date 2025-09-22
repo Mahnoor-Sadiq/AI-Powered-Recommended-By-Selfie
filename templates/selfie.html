@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Fashion Recommender | Tailor</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Animate CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/slicknav.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/flaticon.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/progressbar_barfiller.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/gijgo.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/animate.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/animated-headline.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/magnific-popup.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fontawesome-all.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/themify-icons.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/slick.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/nice-select.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <!-- Preloader Start -->
+    <!-- <div id="preloader-active">
+            <div class="preloader d-flex align-items-center justify-content-center">
+                <div class="preloader-inner position-relative">
+                    <div class="preloader-circle"></div>
+                    <div class="preloader-img pere-text">
+                        <img src="{{ url_for('static', filename='img/logo/loder.png') }}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>  -->
+    <style>
+        :root {
+            --primary-color: #BE9278;
+            --secondary-color: #2c3e50;
+            --accent-color: #f8f9fa;
+            --text-dark: #2c3e50;
+            --gradient: linear-gradient(135deg, #9b7466 0%, #ff8a50 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: #f8f9fa;
+        }
+
+        /* Header Styles */
+        .header-area {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section with Carousel */
+        /* Hero Section with Carousel */
+        /* Hero Text Styling */
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 15, 15, 0.4);
+            /* slight overlay for readability */
+            color: #fff;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 700px;
+            padding: 20px;
+        }
+
+        .hero-icon i {
+            color: #9b5de5;
+            /* Purple accent */
+            margin-bottom: 15px;
+            text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.7);
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin-top: 10px;
+            color: #f1f1f1;
+            line-height: 1.6;
+            text-shadow: 0px 2px 6px rgba(0, 0, 0, 0.6);
+        }
+
+        .hero-section {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            /* Full screen height */
+            overflow: hidden;
+        }
+
+        .hero-img {
+            width: 100%;
+            height: 100vh;
+            /* Match hero section */
+            object-fit: cover;
+            /* Prevent distortion */
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.45);
+            /* Dark overlay */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Text & Icons inside hero only */
+        .hero-section .hero-title,
+        .hero-section .hero-subtitle,
+        .hero-section .hero-content,
+        .hero-section .hero-icon i {
+            color: #ffffff;
+            /* White text */
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            margin-top: 10px;
+        }
+
+        .hero-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            animation: rotateIn 1s ease 0.4s both;
+        }
+
+
+        /* Upload Section */
+        .upload-section {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
+
+        .section-title p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .upload-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .upload-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 2px solid #f0f0f0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .upload-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .upload-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            border-color: var(--primary-color);
+        }
+
+        .upload-card:hover::before {
+            left: 100%;
+        }
+
+        .upload-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .upload-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        .upload-description {
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .file-input-wrapper {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .file-input {
+            position: absolute;
+            left: -9999px;
+            opacity: 0;
+        }
+
+        .file-input-label,
+        .camera-btn {
+            background: var(--gradient);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            display: inline-block;
+            text-decoration: none;
+            width: 100%;
+        }
+
+        .file-input-label:hover,
+        .camera-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 107, 53, 0.3);
+        }
+
+        /* Camera Area */
+        .camera-area {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        #video {
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+
+        .capture-btn {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .capture-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 107, 53, 0.3);
+        }
+
+        /* Results Section */
+        .results-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .uploaded-image {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .uploaded-image img {
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            max-width: 300px;
+        }
+
+        .recommendations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .recommendation-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .recommendation-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .recommendation-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .recommendation-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .score-badge {
+            background: var(--gradient);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        /* Loading Animation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            display: none;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Error Messages */
+        .error-message {
+            background: #ff4757;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .upload-options {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .main-menu {
+                display: none;
+            }
+
+            .hero-section {
+                height: auto;
+                padding: 120px 0 60px;
+            }
+
+            .hero-section .carousel-item img {
+                height: 400px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes rotateIn {
+            from {
+                opacity: 0;
+                transform: rotate(-200deg);
+            }
+
+            to {
+                opacity: 1;
+                transform: rotate(0deg);
+            }
+        }
+    </style>
+
+    <!-- <style>
+        :root {
+            --primary-color: #BE9278;
+            --secondary-color: #2c3e50;
+            --accent-color: #f8f9fa;
+            --text-dark: #2c3e50;
+            --gradient: linear-gradient(135deg, #9b7466 0%, #ff8a50 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: #f8f9fa;
+        }
+
+        /* Header Styles */
+        .header-area {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+       
+
+        /* Hero Section */
+        .hero-section {
+            background: var(--gradient);
+            padding: 150px 0 100px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="white" opacity="0.1"><polygon points="0,100 1000,0 1000,100"/></svg>');
+            background-size: cover;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            animation: rotateIn 1s ease 0.4s both;
+        }
+
+        /* Upload Section */
+        .upload-section {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
+
+        .section-title p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .upload-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .upload-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 2px solid #f0f0f0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .upload-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .upload-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            border-color: var(--primary-color);
+        }
+
+        .upload-card:hover::before {
+            left: 100%;
+        }
+
+        .upload-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .upload-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        .upload-description {
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .file-input-wrapper {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .file-input {
+            position: absolute;
+            left: -9999px;
+            opacity: 0;
+        }
+
+        .file-input-label, .camera-btn {
+            background: var(--gradient);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            display: inline-block;
+            text-decoration: none;
+            width: 100%;
+        }
+
+        .file-input-label:hover, .camera-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 107, 53, 0.3);
+        }
+
+        /* Camera Area */
+        .camera-area {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        #video {
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 20px;
+        }
+
+        .capture-btn {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .capture-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 107, 53, 0.3);
+        }
+
+        /* Results Section */
+        .results-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .uploaded-image {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .uploaded-image img {
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            max-width: 300px;
+        }
+
+        .recommendations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .recommendation-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .recommendation-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .recommendation-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .recommendation-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .score-badge {
+            background: var(--gradient);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        /* Loading Animation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            display: none;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Error Messages */
+        .error-message {
+            background: #ff4757;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .upload-options {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .main-menu {
+                display: none;
+            }
+            
+            .hero-section {
+                padding: 120px 0 60px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes rotateIn {
+            from {
+                opacity: 0;
+                transform: rotate(-200deg);
+            }
+            to {
+                opacity: 1;
+                transform: rotate(0deg);
+            }
+        }
+    </style> -->
+    </head>
+
+    <body>
+        <!-- Loading Overlay -->
+        <div class="loading-overlay" id="loadingOverlay">
+            <div class="loading-spinner"></div>
+        </div>
+
+        <!-- Header Start -->
+        <!-- <header>
+        <div class="header-area header_area">
+            <div class="main-header">
+                <div class="header-bottom header-sticky">
+                  <div class="logo" style="height: 60px;">
+                    <a href="#">
+                      <img src="{{ url_for('static', filename='img/logo/capture1.png') }}" 
+                           alt="Logo" 
+                           style="height: 100%; width: auto;">
+                    </a>
+                  </div>
+                  
+                    <div class="header-left d-flex f-right align-items-center">
+                        <div class="main-menu f-right d-none d-lg-block">
+                            <nav> 
+                                <ul id="navigation">                                                                                                                                     
+                                    <li><a href="#">Home</a></li>
+                                 
+                                </ul>
+                            </nav>
+                        </div>
+                   <div class="header-right-btn f-right d-none d-lg-block ml-30">
+    <a href="{{ url_for('selfie_page') }}" class="header-btn">Try Now</a>
+</div>
+
+                    </div>          
+                    <div class="col-12">
+                        <div class="mobile_menu d-block d-lg-none"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header> -->
+        <header>
+            <div class="header-area header_area">
+                <div class="main-header">
+                    <div class="header-bottom header-sticky d-flex align-items-center justify-content-between">
+
+                        <!-- Logo -->
+                        <div class="logo" style="height: 60px;">
+                            <a href="{{ url_for('index') }}">
+                                <img src="{{ url_for('static', filename='img/logo/capture1.png') }}" alt="Logo"
+                                    style="height: 100%; width: auto;">
+                            </a>
+                        </div>
+
+                        <!-- Navigation Menu -->
+                        <div class="header-left d-flex align-items-center">
+                            <div class="main-menu f-right d-none d-lg-block">
+                                <nav>
+                                    <ul id="navigation">
+                                        <li><a href="{{ url_for('index') }}">Home</a></li>
+                                        <li><a href="{{ url_for('about') }}">About</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+
+                            <!-- Try Now Button -->
+                            <div class="header-right-btn f-right d-none d-lg-block ml-30">
+                                <a href="{{ url_for('selfie_page') }}" class="header-btn">Try Now</a>
+                            </div>
+                        </div>
+
+                        <!-- Mobile Menu -->
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="4000">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f"
+                            class="d-block w-100 hero-img" alt="Outfit 1">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ url_for('static', filename='img/gallery/2.jpg') }}" class="d-block w-100 hero-img"
+                            alt="Outfit 2">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb"
+                            class="d-block w-100 hero-img" alt="Outfit 3">
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+            </div>
+
+            <!-- Overlay Content -->
+            <div class="hero-overlay d-flex justify-content-center align-items-center">
+                <div class="hero-content text-center">
+                    <div class="hero-icon">
+                        <i class="fas fa-robot fa-3x"></i>
+                    </div>
+                    <h1 class="hero-title">AI Fashion Recommender</h1>
+                    <p class="hero-subtitle">
+                        Upload a selfie and get personalized fashion recommendations powered by AI.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+
+
+
+
+
+        <!-- Upload Section -->
+        <section class="upload-section" id="upload">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Get Your Style Recommendations</h2>
+                    <p>Choose how you'd like to share your photo with our AI stylist. Upload an existing photo or take a
+                        new selfie right now.</p>
+                </div>
+
+                <div class="upload-options">
+                    <!-- File Upload Card -->
+                    <div class="upload-card">
+                        <div class="upload-icon">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                        </div>
+                        <h3 class="upload-title">Upload Photo</h3>
+                        <p class="upload-description">Select a clear photo of yourself from your device. Make sure
+                            you're well-lit and facing the camera for best results.</p>
+
+                        <form method="POST" enctype="multipart/form-data" onsubmit="showLoading()">
+                            <div class="file-input-wrapper">
+                                <input type="file" id="fileInput" name="file" class="file-input" accept="image/*"
+                                    required>
+                                <label for="fileInput" class="file-input-label">
+                                    <i class="fas fa-image me-2"></i>Choose File
+                                </label>
+                            </div>
+                            <button type="submit" class="camera-btn mt-3" style="background: var(--secondary-color);">
+                                <i class="fas fa-magic me-2"></i>Get Recommendations
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Camera Card -->
+                    <div class="upload-card">
+                        <div class="upload-icon">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <h3 class="upload-title">Take Selfie</h3>
+                        <p class="upload-description">Use your device's camera to take a fresh selfie. Find good
+                            lighting and position yourself in the center of the frame.</p>
+
+                        <button class="camera-btn" onclick="startCamera()">
+                            <i class="fas fa-video me-2"></i>Open Camera
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Camera Area -->
+                <div id="cameraArea" class="camera-area" style="display:none;">
+                    <h4 class="mb-4">Position yourself in the camera</h4>
+                    <video id="video" width="400" height="300" autoplay></video>
+                    <canvas id="canvas" width="400" height="300" style="display:none;"></canvas>
+                    <div class="mt-3">
+                        <button class="capture-btn me-3" onclick="captureSelfie()">
+                            <i class="fas fa-camera me-2"></i>Capture Selfie
+                        </button>
+                        <button class="capture-btn" onclick="stopCamera()" style="background: #6c757d;">
+                            <i class="fas fa-times me-2"></i>Cancel
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Hidden Form for selfie -->
+                <form id="selfieForm" method="POST" action="/upload_selfie">
+                    <input type="hidden" name="selfieData" id="selfieData">
+                </form>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        {% if selfie_path or recommended_images %}
+        <section class="results-section">
+            <div class="container">
+                {% if selfie_path %}
+                <div class="uploaded-image">
+                    <h3 class="mb-4">Your Photo</h3>
+                    <img src="{{ selfie_path }}" alt="Your uploaded photo" class="img-fluid">
+                </div>
+                {% endif %}
+
+                {% if recommended_images %}
+                <div class="text-center">
+                    <h3 class="mb-4">Recommended Styles for You</h3>
+                    <p class="mb-5">Based on your photo analysis, here are personalized fashion recommendations:</p>
+
+                    <div class="recommendations-grid">
+                        {% for item in recommended_images %}
+                        <div class="recommendation-item">
+                            <img src="{{ url_for('static', filename='fashion_images/' ~ item.filename) }}"
+                                alt="Fashion recommendation">
+                            <div class="recommendation-info">
+                                <div class="score-badge">
+                                    Match: {{ "%.0f"|format(item.score * 100) }}%
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </section>
+        {% endif %}
+
+        {% if error %}
+        <section class="upload-section">
+            <div class="container">
+                <div class="error-message">
+                    <i class="fas fa-exclamation-triangle me-2"></i>{{ error }}
+                </div>
+            </div>
+        </section>
+        {% endif %}
+
+        <!-- Bootstrap JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+        <script>
+            const video = document.getElementById('video');
+            const canvas = document.getElementById('canvas');
+            const selfieData = document.getElementById('selfieData');
+            const selfieForm = document.getElementById('selfieForm');
+            const cameraArea = document.getElementById('cameraArea');
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            const fileInput = document.getElementById('fileInput');
+            let stream;
+
+            // File input change handler
+            fileInput.addEventListener('change', function () {
+                const fileName = this.files[0] ? this.files[0].name : 'Choose File';
+                const label = document.querySelector('label[for="fileInput"]');
+                if (this.files[0]) {
+                    label.innerHTML = `<i class="fas fa-check me-2"></i>${fileName}`;
+                    label.style.background = '#28a745';
+                }
+            });
+
+            function showLoading() {
+                loadingOverlay.style.display = 'flex';
+            }
+
+            function startCamera() {
+                cameraArea.style.display = 'block';
+                cameraArea.scrollIntoView({ behavior: 'smooth' });
+
+                navigator.mediaDevices.getUserMedia({
+                    video: {
+                        width: 400,
+                        height: 300,
+                        facingMode: 'user'
+                    }
+                }).then(s => {
+                    stream = s;
+                    video.srcObject = stream;
+                }).catch(err => {
+                    console.error('Camera access error:', err);
+                    alert('Unable to access camera. Please check your permissions.');
+                });
+            }
+
+            function stopCamera() {
+                if (stream) {
+                    stream.getTracks().forEach(track => track.stop());
+                    stream = null;
+                    cameraArea.style.display = 'none';
+                }
+            }
+
+            function captureSelfie() {
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+                const dataURL = canvas.toDataURL('image/png');
+                selfieData.value = dataURL;
+                stopCamera();
+                showLoading();
+                selfieForm.submit();
+            }
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Header scroll effect
+            window.addEventListener('scroll', function () {
+                const header = document.querySelector('.header-area');
+                if (window.scrollY > 100) {
+                    header.style.background = 'rgba(255, 255, 255, 0.95)';
+                    header.style.backdropFilter = 'blur(10px)';
+                } else {
+                    header.style.background = '#fff';
+                    header.style.backdropFilter = 'none';
+                }
+            });
+        </script>
+    </body>
+
+</html>

@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+*.egg
+*.log
+
+# Virtual environment
+venv/
+env/
+.env/
+
+# Flask cache/uploads
+instance/
+*.db
+migrations/
+static/uploads/
+
+# Large data
+model/image_features.json
+*.h5
+*.pkl
+*.npy
+
+# IDE/OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+images/
+static/fashion_images/
