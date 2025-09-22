@@ -8,6 +8,9 @@ from tensorflow.keras.applications.mobilenet_v2 import preprocess_input, MobileN
 from sklearn.metrics.pairwise import cosine_similarity
 import requests
 import zipfile
+import io
+import glob
+from tqdm import tqdm
 
 app = Flask(__name__)
 
@@ -16,30 +19,49 @@ UPLOAD_FOLDER = 'static/uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
-MODEL_DIR = "model"
-FEATURES_FILE = os.path.join(MODEL_DIR, "image_features.json")
-GITHUB_RELEASE_ZIP = "https://github.com/yourusername/yourrepo/releases/download/v1.0/model.zip"
+FEATURES_ZIP_URL = "https://github.com/Mahnoor-Sadiq/AI-Powered-Recommended-By-Selfie/releases/download/ML/image_features.zip"
+IMAGES_ZIP_URL = "https://github.com/Mahnoor-Sadiq/AI-Powered-Recommended-By-Selfie/releases/download/ML/fashion_images.zip"
 
-def ensure_features_file():
-    if not os.path.exists(FEATURES_FILE):
-        print("⚠️ image_features.json not found. Downloading from GitHub release...")
-        os.makedirs(MODEL_DIR, exist_ok=True)
-
-        zip_path = os.path.join(MODEL_DIR, "model.zip")
-        with requests.get(GITHUB_RELEASE_ZIP, stream=True) as r:
-            r.raise_for_status()
-            with open(zip_path, "wb") as f:
-                for chunk in r.iter_content(chunk_size=8192):
-                    f.write(chunk)
-
-        with zipfile.ZipFile(zip_path, 'r') as zip_ref:
-            zip_ref.extractall(MODEL_DIR)
-
-        os.remove(zip_path)
-        print("✅ Download & extraction complete!")
+FEATURES_PATH = "model/image_features.json"
+IMAGES_DIR = "static/fashion_images/"
 
 
-ensure_features_file()
+def download_and_extract_zip(url, extract_to):
+    os.makedirs(extract_to, exist_ok=True)
+    print(f"\nDownloading from {url} ...")
+
+    with requests.get(url, stream=True) as r:
+        r.raise_for_status()
+        total_size = int(r.headers.get('content-length', 0))
+        chunk_size = 8192
+
+        buffer = io.BytesIO()
+        with tqdm(total=total_size, unit='B', unit_scale=True, desc="Downloading") as pbar:
+            for chunk in r.iter_content(chunk_size=chunk_size):
+                buffer.write(chunk)
+                pbar.update(len(chunk))
+
+    buffer.seek(0)
+    with zipfile.ZipFile(buffer) as z:
+        z.extractall(extract_to)
+    print(f"Extracted to {extract_to}")
+
+def ensure_files():
+    # 1. Ensure model/image_features.json
+    if not os.path.exists(FEATURES_PATH):
+        print("image_features.json not found. Downloading...")
+        download_and_extract_zip(FEATURES_ZIP_URL, "model")
+    else:
+        print("image_features.json already exists ✅")
+
+    # 2. Ensure static/fashion_images/ has images
+    if not os.path.exists(IMAGES_DIR) or not glob.glob(os.path.join(IMAGES_DIR, "*")):
+        print("Fashion images not found. Downloading...")
+        download_and_extract_zip(IMAGES_ZIP_URL, "static")
+    else:
+        print("Fashion images already exist ✅")
+
+ensure_files()
 
 # Load model
 model = MobileNetV2(weights='imagenet', include_top=False, pooling='avg')
