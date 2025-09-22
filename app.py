@@ -3,8 +3,8 @@ import json
 import numpy as np
 from flask import Flask, render_template, request
 from werkzeug.utils import secure_filename
-from tensorflow.keras.preprocessing import image
-from tensorflow.keras.applications.mobilenet_v2 import preprocess_input, MobileNetV2
+from keras.preprocessing import image
+from keras.applications.mobilenet_v2 import preprocess_input, MobileNetV2
 from sklearn.metrics.pairwise import cosine_similarity
 import requests
 import zipfile
@@ -26,25 +26,53 @@ FEATURES_PATH = "model/image_features.json"
 IMAGES_DIR = "static/fashion_images/"
 
 
-def download_and_extract_zip(url, extract_to):
+def download_and_extract_zip(url, extract_to, max_retries=5, chunk_size=1024*1024):
     os.makedirs(extract_to, exist_ok=True)
-    print(f"\nDownloading from {url} ...")
+    local_zip = os.path.join(extract_to, "temp_download.zip")
 
-    with requests.get(url, stream=True) as r:
-        r.raise_for_status()
-        total_size = int(r.headers.get('content-length', 0))
-        chunk_size = 8192
+    # Retry logic
+    for attempt in range(1, max_retries + 1):
+        try:
+            # Support resuming
+            resume_header = {}
+            pos = 0
+            if os.path.exists(local_zip):
+                pos = os.path.getsize(local_zip)
+                resume_header = {"Range": f"bytes={pos}-"}
+                print(f"Resuming download from {pos/1024/1024:.2f} MB...")
 
-        buffer = io.BytesIO()
-        with tqdm(total=total_size, unit='B', unit_scale=True, desc="Downloading") as pbar:
-            for chunk in r.iter_content(chunk_size=chunk_size):
-                buffer.write(chunk)
-                pbar.update(len(chunk))
+            with requests.get(url, headers=resume_header, stream=True, timeout=30) as r:
+                r.raise_for_status()
+                total_size = int(r.headers.get("Content-Length", 0)) + pos
+                progress = tqdm(
+                    total=total_size,
+                    initial=pos,
+                    unit="B",
+                    unit_scale=True,
+                    desc=f"Downloading"
+                )
 
-    buffer.seek(0)
-    with zipfile.ZipFile(buffer) as z:
-        z.extractall(extract_to)
-    print(f"Extracted to {extract_to}")
+                with open(local_zip, "ab") as f:
+                    for chunk in r.iter_content(chunk_size=chunk_size):
+                        if chunk:
+                            f.write(chunk)
+                            progress.update(len(chunk))
+                progress.close()
+
+            print("Download complete. Extracting...")
+            with zipfile.ZipFile(local_zip, "r") as zip_ref:
+                zip_ref.extractall(extract_to)
+
+            os.remove(local_zip)
+            print("Extraction done ✅")
+            return  # success, exit function
+
+        except Exception as e:
+            print(f"Attempt {attempt} failed: {e}")
+            if attempt == max_retries:
+                raise
+            else:
+                print("Retrying download...")
 
 def ensure_files():
     # 1. Ensure model/image_features.json
